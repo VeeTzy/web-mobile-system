@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tambah Mahasiswa — SiAbsen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+
+<nav class="navbar px-4" style="height:var(--topbar-h); background:var(--green-dark);">
+  <a class="navbar-brand fw-black text-white" href="dashboard.html">
+    <span class="dot"></span>SiAbsen
+  </a>
+  <div class="d-flex align-items-center gap-3">
+    <span class="text-white-50 small"><i class="bi bi-person-circle me-1"></i><span id="topbar-username">Admin</span></span>
+    <a href="#" class="text-white-50 small text-decoration-none" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <div id="sidebar-container"></div>
+
+  <main class="main-content animate-in">
+    <h4 class="fw-black mb-1" style="color:var(--green-dark);">Tambah Mahasiswa</h4>
+    <p class="text-muted small mb-4">Daftarkan mahasiswa baru ke dalam sistem</p>
+
+    <!-- Bootstrap Alert (hidden by default) -->
+    <div class="alert alert-danger d-none py-2 small" id="reg-error" role="alert"></div>
+    <div class="alert alert-success d-none py-2 small" id="reg-success" role="alert"></div>
+
+    <!-- Bootstrap Card + Form -->
+    <div class="card border-0 shadow-sm" style="max-width:540px;">
+      <div class="card-body p-4">
+
+        <div class="mb-3">
+          <label for="reg-nim" class="form-label fw-semibold small">NIM</label>
+          <input type="text" class="form-control" id="reg-nim" placeholder="Contoh: 22110011" />
+        </div>
+
+        <div class="mb-3">
+          <label for="reg-nama" class="form-label fw-semibold small">Nama Lengkap</label>
+          <input type="text" class="form-control" id="reg-nama" placeholder="Nama sesuai KTM" />
+        </div>
+
+        <div class="mb-3">
+          <label for="reg-username" class="form-label fw-semibold small">Username</label>
+          <input type="text" class="form-control" id="reg-username" placeholder="Username untuk login" />
+        </div>
+
+        <div class="mb-3">
+          <label for="reg-kelas" class="form-label fw-semibold small">Kelas</label>
+          <!-- Bootstrap Select -->
+          <select class="form-select" id="reg-kelas">
+            <option value="">— Pilih Kelas —</option>
+            <option>TI-A 2022</option>
+            <option>TI-B 2022</option>
+            <option>TI-A 2023</option>
+            <option>TI-B 2023</option>
+            <option>SI-A 2022</option>
+            <option>SI-B 2022</option>
+            <option>SI-A 2023</option>
+            <option>SI-B 2023</option>
+          </select>
+        </div>
+
+        <!-- Bootstrap Row untuk dua kolom -->
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label for="reg-password" class="form-label fw-semibold small">Password</label>
+            <input type="password" class="form-control" id="reg-password" placeholder="Min. 4 karakter" />
+          </div>
+          <div class="col-6">
+            <label for="reg-repassword" class="form-label fw-semibold small">Ulangi Password</label>
+            <input type="password" class="form-control" id="reg-repassword" placeholder="Ketik ulang" />
+          </div>
+        </div>
+
+        <!-- Bootstrap Button Group -->
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-success fw-bold"
+            style="background:var(--green-dark); border-color:var(--green-dark);"
+            onclick="handleRegister()"
+          >
+            <i class="bi bi-floppy-fill me-1"></i>Simpan
+          </button>
+          <button class="btn btn-outline-secondary fw-semibold" onclick="clearRegForm()">
+            <i class="bi bi-x-lg me-1"></i>Reset
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script>
+  loadSidebar();
+  populateTopbarUser();
+</script>
+</body>
+</html>

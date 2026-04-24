@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — SiAbsen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+
+<!-- Bootstrap Navbar -->
+<nav class="navbar px-4" style="height:var(--topbar-h); background:var(--green-dark);">
+  <a class="navbar-brand fw-black text-white" href="dashboard.html">
+    <span class="dot"></span>SiAbsen
+  </a>
+  <div class="d-flex align-items-center gap-3">
+    <span class="text-white-50 small">
+      <i class="bi bi-person-circle me-1"></i>
+      <span id="topbar-username">Admin</span>
+    </span>
+    <a href="#" class="text-white-50 small text-decoration-none" onclick="handleLogout()">
+      <i class="bi bi-box-arrow-right me-1"></i>Logout
+    </a>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <div id="sidebar-container"></div>
+
+  <main class="main-content animate-in">
+
+    <!-- Page Heading -->
+    <h4 class="fw-black mb-1" style="color:var(--green-dark);">Dashboard</h4>
+    <p class="text-muted small mb-4">
+      <i class="bi bi-calendar3 me-1"></i><span id="dash-date"></span>
+    </p>
+
+    <!-- Stat Cards — Bootstrap Cards dalam grid -->
+    <div class="row g-3 mb-4">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="rounded-3 p-3 bg-success bg-opacity-10 text-success fs-4">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-black" id="stat-total">—</div>
+              <div class="text-muted small fw-semibold">Total Mahasiswa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="rounded-3 p-3 bg-primary bg-opacity-10 text-primary fs-4">
+              <i class="bi bi-check2-circle"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-black" id="stat-hadir">—</div>
+              <div class="text-muted small fw-semibold">Hadir Hari Ini</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="rounded-3 p-3 bg-warning bg-opacity-10 text-warning fs-4">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-black" id="stat-izin">—</div>
+              <div class="text-muted small fw-semibold">Izin / Sakit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="rounded-3 p-3 bg-danger bg-opacity-10 text-danger fs-4">
+              <i class="bi bi-x-circle-fill"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-black" id="stat-absen">—</div>
+              <div class="text-muted small fw-semibold">Tidak Hadir</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabel Absensi — Bootstrap Table -->
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3">
+        <span class="fw-bold" style="color:var(--green-dark);">Absensi Terbaru</span>
+        <a href="mahasiswa.html" class="btn btn-sm btn-outline-success">
+          Lihat Semua <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="text-uppercase small text-muted fw-semibold">Mahasiswa</th>
+              <th class="text-uppercase small text-muted fw-semibold">NIM</th>
+              <th class="text-uppercase small text-muted fw-semibold">Kelas</th>
+              <th class="text-uppercase small text-muted fw-semibold">Waktu</th>
+              <th class="text-uppercase small text-muted fw-semibold">Status</th>
+            </tr>
+          </thead>
+          <tbody id="dash-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script>
+  loadSidebar();
+  populateTopbarUser();
+  initDashboard();
+</script>
+</body>
+</html>

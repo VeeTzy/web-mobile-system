@@ -1,0 +1,203 @@
+/* ============================================================
+   main.css — Layout & Page-Specific Styles
+   SiAbsen | Sistem Informasi Absensi Digital
+   ============================================================ */
+
+/* ── App Shell ─────────────────────────────────────────────── */
+.app-shell {
+  display: flex;
+  min-height: calc(100vh - var(--topbar-h));
+}
+.main-content {
+  flex: 1;
+  padding: var(--space-8) 36px;
+  overflow-y: auto;
+  max-width: calc(var(--content-max) - var(--sidebar-w));
+}
+
+/* ── Login Page ────────────────────────────────────────────── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-mid) 55%, #74c69d 100%);
+  position: relative;
+  overflow: hidden;
+}
+.login-page::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 80px solid rgba(255,255,255,0.05);
+  top: -180px; right: -120px;
+  pointer-events: none;
+}
+.login-page::after {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 60px solid rgba(255,255,255,0.05);
+  bottom: -100px; left: -60px;
+  pointer-events: none;
+}
+.login-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-xl);
+  padding: 48px 44px 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  z-index: 2;
+}
+.login-logo-wrap {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.login-logo-icon {
+  width: 64px; height: 64px;
+  background: var(--clr-primary);
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--clr-accent);
+  margin-bottom: var(--space-3);
+}
+.login-logo-wrap h2 { font-size: 1.5rem; font-weight: var(--fw-black); color: var(--clr-primary); }
+.login-logo-wrap p  { font-size: var(--fs-xs); color: var(--clr-muted); margin-top: 2px; }
+.login-hint {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+  margin-top: 18px;
+}
+
+/* ── Dashboard ─────────────────────────────────────────────── */
+.dash-date {
+  font-size: var(--fs-sm);
+  color: var(--clr-muted);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── QR Scanner ────────────────────────────────────────────── */
+.qr-page-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-4) 0;
+}
+.qr-frame-outer {
+  width: 260px; height: 260px;
+  border-radius: var(--radius-xl);
+  background: #1c2b22;
+  position: relative;
+  box-shadow: 0 0 0 4px var(--clr-primary-light), var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qr-frame-inner {
+  width: 200px; height: 200px;
+  border-radius: var(--radius-md);
+  background: #111;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qr-scan-line {
+  position: absolute;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clr-primary-light), transparent);
+  animation: scanAnim 2s linear infinite;
+  box-shadow: 0 0 8px var(--clr-primary-light);
+}
+@keyframes scanAnim {
+  0%   { top: 0; }
+  100% { top: 100%; }
+}
+.qr-corner-piece {
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--clr-primary-light);
+  border-style: solid;
+}
+.qr-corner-piece.tl { top: -2px;    left: -2px;  border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+.qr-corner-piece.tr { top: -2px;    right: -2px; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
+.qr-corner-piece.bl { bottom: -2px; left: -2px;  border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+.qr-corner-piece.br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+.qr-info-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  padding: 22px var(--space-8);
+  max-width: 380px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.qr-info-card h5 {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-black);
+  color: var(--clr-primary);
+  margin-bottom: var(--space-2);
+}
+.qr-info-card p {
+  font-size: var(--fs-sm);
+  color: var(--clr-muted);
+  line-height: 1.6;
+}
+.qr-tags {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+.qr-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--radius-sm);
+  padding: 5px 12px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+}
+.qr-tag.gps    { background: var(--clr-primary-pale); color: var(--clr-primary); }
+.qr-tag.camera { background: var(--clr-info-bg);      color: var(--clr-info); }
+
+/* ── Rekap Bar Chart ───────────────────────────────────────── */
+.bar-item { margin-bottom: 14px; }
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  margin-bottom: 5px;
+}
+.bar-track {
+  background: #e9f1ec;
+  border-radius: 99px;
+  height: 10px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.8s ease;
+}
+
+/* ── Responsive adjustments ────────────────────────────────── */
+@media (max-width: 768px) {
+  .main-content { padding: var(--space-5) var(--space-4); }
+  .login-card { padding: 36px 24px 28px; margin: 16px; }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Absensi — SiAbsen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+
+<nav class="navbar px-4" style="height:var(--topbar-h); background:var(--green-dark);">
+  <a class="navbar-brand fw-black text-white" href="dashboard.html">
+    <span class="dot"></span>SiAbsen
+  </a>
+  <div class="d-flex align-items-center gap-3">
+    <span class="text-white-50 small"><i class="bi bi-person-circle me-1"></i><span id="topbar-username">Admin</span></span>
+    <a href="#" class="text-white-50 small text-decoration-none" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <div id="sidebar-container"></div>
+
+  <main class="main-content animate-in">
+    <h4 class="fw-black mb-1" style="color:var(--green-dark);">QR Absensi</h4>
+    <p class="text-muted small mb-4">Scan QR Code untuk mencatat kehadiran mahasiswa</p>
+
+    <div class="d-flex flex-column align-items-center gap-4">
+
+      <!-- QR Frame -->
+      <div class="qr-frame-outer">
+        <div class="qr-corner tl"></div>
+        <div class="qr-corner tr"></div>
+        <div class="qr-corner bl"></div>
+        <div class="qr-corner br"></div>
+        <div class="qr-frame-inner">
+          <div class="qr-scan-line"></div>
+          <i class="bi bi-qr-code" style="font-size:5rem; color:rgba(255,255,255,0.12);"></i>
+        </div>
+      </div>
+
+      <p class="text-muted small text-center">Arahkan kamera ke QR Code mahasiswa</p>
+
+      <!-- Bootstrap Card untuk info -->
+      <div class="card border-0 shadow-sm" style="max-width:380px; width:100%;">
+        <div class="card-body text-center">
+          <h6 class="fw-bold mb-2" style="color:var(--green-dark);">
+            <i class="bi bi-qr-code-scan me-1"></i>Cara Kerja Sistem
+          </h6>
+          <p class="text-muted small mb-3">
+            Sistem otomatis mengambil <strong>lokasi GPS</strong> dan verifikasi melalui
+            <strong>kamera depan</strong> sebelum data dikirim ke server.
+          </p>
+
+          <!-- Bootstrap Badges untuk status -->
+          <div class="d-flex justify-content-center gap-2 mb-3">
+            <span class="badge text-bg-success fs-6 fw-semibold px-3 py-2">
+              <i class="bi bi-geo-alt-fill me-1"></i>GPS Aktif
+            </span>
+            <span class="badge text-bg-primary fs-6 fw-semibold px-3 py-2">
+              <i class="bi bi-camera-fill me-1"></i>Kamera Siap
+            </span>
+          </div>
+
+          <!-- Bootstrap Button trigger modal -->
+          <button
+            class="btn btn-success w-100 fw-bold"
+            style="background:var(--green-dark); border-color:var(--green-dark);"
+            onclick="simulateScan()"
+          >
+            <i class="bi bi-play-circle-fill me-2"></i>Mulai Scan (Simulasi)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Bootstrap Modal (native, bukan custom) -->
+<div class="modal fade" id="scanModal" tabindex="-1" aria-labelledby="scanModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-body text-center p-5">
+        <div class="fs-1 mb-3">✅</div>
+        <h5 class="fw-black modal-title mb-1" id="scanModalLabel" style="color:var(--green-dark);">
+          Absensi Berhasil!
+        </h5>
+        <p class="text-muted small mb-3">
+          Kehadiran <strong id="modal-name">—</strong> telah tercatat.<br/>
+          Lokasi GPS & verifikasi wajah berhasil.
+        </p>
+        <!-- Bootstrap List Group untuk detail info -->
+        <ul class="list-group list-group-flush text-start small mb-4">
+          <li class="list-group-item d-flex justify-content-between px-0">
+            <span class="text-muted">NIM</span>
+            <span class="fw-semibold nim" id="modal-nim">—</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between px-0">
+            <span class="text-muted">Waktu</span>
+            <span class="fw-semibold" id="modal-time">—</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between px-0">
+            <span class="text-muted">Lokasi</span>
+            <span class="fw-semibold">📍 Kampus Utama</span>
+          </li>
+        </ul>
+        <button
+          class="btn btn-success w-100 fw-bold"
+          style="background:var(--green-dark); border-color:var(--green-dark);"
+          data-bs-dismiss="modal"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script>
+  loadSidebar();
+  populateTopbarUser();
+</script>
+</body>
+</html>

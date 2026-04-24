@@ -1,0 +1,26 @@
+<!-- _sidebar.html — Bootstrap Nav Sidebar -->
+<aside class="sidebar">
+  <div class="px-3 pb-3 mb-1 border-bottom border-white border-opacity-10">
+    <p class="mb-0" style="font-size:.72rem; color:rgba(183,228,199,.6); font-weight:600;">Selamat datang,</p>
+    <p class="mb-0 fw-bold text-white" id="sidebar-username">Administrator</p>
+  </div>
+
+  <p class="sidebar-section">Menu Utama</p>
+  <nav class="nav flex-column">
+    <a class="nav-link" href="dashboard.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+    <a class="nav-link" href="mahasiswa.html"><i class="bi bi-people-fill"></i> Data Mahasiswa</a>
+    <a class="nav-link" href="qrscan.html"><i class="bi bi-qr-code-scan"></i> QR Absensi</a>
+    <a class="nav-link" href="register.html"><i class="bi bi-person-plus-fill"></i> Tambah Mahasiswa</a>
+  </nav>
+
+  <p class="sidebar-section">Laporan</p>
+  <nav class="nav flex-column">
+    <a class="nav-link" href="rekap.html"><i class="bi bi-bar-chart-fill"></i> Rekap Absensi</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="btn btn-sm btn-outline-light w-100 d-flex align-items-center gap-2" onclick="handleLogout()">
+      <i class="bi bi-box-arrow-left"></i> Logout
+    </button>
+  </div>
+</aside>
